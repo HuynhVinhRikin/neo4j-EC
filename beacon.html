@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+var frameData = new VRFrameData();
+var vrDisplay;
+var btn = document.querySelector('.stop-start');
+var normalSceneFrame;
+var vrSceneFrame;
+
+var poseStatsBtn = document.querySelector('.pose-stats');
+var poseStatsSection = document.querySelector('section');
+poseStatsSection.style.visibility = 'hidden'; // hide it initially
+
+var posStats = document.querySelector('.pos');
+var orientStats = document.querySelector('.orient');
+var linVelStats = document.querySelector('.lin-vel');
+var linAccStats = document.querySelector('.lin-acc');
+var angVelStats = document.querySelector('.ang-vel');
+var angAccStats = document.querySelector('.ang-acc');
+var poseStatsDisplayed = false;
+
+document.body.onload = start;
+function start() {
+  canvas = document.getElementById("glcanvas");
+
+  initWebGL(canvas);      // Initialize the GL context
+
+  // WebGL setup code here
+
+  canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    drawScene();
+
+    if(navigator.getVRDisplays) {
+      console.log('WebVR 1.1 supported');
+      navigator.getVRDisplays().then(function(displays) {
+        if(displays.length > 0) {
+          vrDisplay = displays[0];
+          console.log('Display found');
+          btn.addEventListener('click', function() {
+            if(btn.textContent === 'Start VR display') {
+              vrDisplay.requestPresent([{ source: canvas }]).then(function() {
+                console.log('Presenting to WebVR display');
+                
+                var leftEye = vrDisplay.getEyeParameters('left');
+                var rightEye = vrDisplay.getEyeParameters('right');
+
+                canvas.width = Math.max(leftEye.renderWidth, rightEye.renderWidth) * 2;
+                canvas.height = Math.max(leftEye.renderHeight, rightEye.renderHeight);
+                window.cancelAnimationFrame(normalSceneFrame);
+                drawVRScene();
+                btn.textContent = 'Exit VR display';
+              });
+            } else {
+              vrDisplay.exitPresent();
+              console.log('Stopped presenting to WebVR display');
+
+              btn.textContent = 'Start VR display';
+
+              // Stop the VR presentation, and start the normal presentation
+              vrDisplay.cancelAnimationFrame(vrSceneFrame);
+              drawScene();
+            }
+          });
+        }
+      });
+    } else {
+      console.log('WebVR API not supported by this browser.');
+    }
+  }
+</script>
+</html>

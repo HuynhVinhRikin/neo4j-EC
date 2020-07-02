@@ -1,0 +1,41 @@
+<%- include ('../partials/header')%>
+<%- include ('../partials/sidebar')%>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header"><i class="fa fa-table"></i> Data Table Example</div>
+            <div class="card-body">
+              <div class="table-responsive">
+              <table id="default-datatable" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>cac san pham</th>
+                        <th>totalPrice</th>
+                        <th>addressShip</th>
+                        <th>Id customer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.forEach( order =>{%>
+                    <tr>
+                        <td><%= order._fields[0].properties.id %></td>
+                        <td><%= order._fields[0].properties.idProduct %></td>
+                        <td><%=  order._fields[0].properties.totalPrice %></td>
+                        <td> <%= order._fields[0].properties.addressShip %></td>
+                        <td> <%= order._fields[0].properties.idCustomer %></td>
+                        
+                    </tr>
+                    <% })%>
+                </tbody>
+               
+            </table>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<script src="/cleave.lib.js"></script>
+<script src="/cleave.js"></script>
+<%- include ('../partials/footer')%>

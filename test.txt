@@ -1,0 +1,34 @@
+<!-- 
+                                            <%console.log(listProductBestSell)%>
+                                            <% if (listProductBestSell && listProductBestSell.length) { %>
+                                             <% listProductBestSell.forEach((product, index) =>{%>
+                                                    <%if((product._fields[0])){%>
+                                                        <div class="col-12 col-padd">
+                                                            <div class="single-product">
+                                                                <div class="product-label">
+                                                                    <div class="new"></div>
+                                                                </div>
+                                                                <div class="product-img">
+                                                                    <a href="#">
+                                                                        <img class="primary-image" src="<%= product._fields[0].properties.image %>" alt="" />
+                                                                    </a>
+                                                                </div>
+                                                                <div class="product-content">
+                                                                    <h2 class="product-name"><a href="#"><%= product._fields[0].properties.name %></a></h2>
+                                                                    <div class="rating">
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                                                    </div>
+                                                                    <div class="price-box">
+                                                                        <span class="new-price"><%= product._fields[0].properties.price %></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <%}%>
+                                                    <%})%>
+                                            <% } %>
+                                            -->

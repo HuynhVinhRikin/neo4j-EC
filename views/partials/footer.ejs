@@ -1,0 +1,373 @@
+<div class="footer-static-container">
+       
+       
+    </div>
+
+    <footer class="ma-footer-container">
+        <div class="container">
+            <div class="row basak-footer">
+                <div class="col-lg-7 col-md-12 col-12">
+                    <address>Copyright &copy; 2020-All rights reserved. <a title="Themes Club" href="https://hastech.company">HUYNHVINH</a></address>
+                </div>
+                
+            </div>
+        </div>
+    </footer>
+    <!-- JS -->
+
+    <!-- jquery-1.11.3.min js
+============================================ -->
+    <script src="../assets3/js/vendor/jquery-1.11.3.min.js"></script>
+
+    <!-- popper js
+============================================ -->
+    <script src="../assets3/js/popper.min.js"></script>
+
+    <!-- bootstrap js
+============================================ -->
+    <script src="../assets3/js/bootstrap.min.js"></script>
+
+    <!-- Nivo slider js
+============================================ -->
+    <script src="../assets3/custom-slider/js/jquery.nivo.slider.js" type="text/javascript"></script>
+    <script src="../assets3/custom-slider/home.js" type="text/javascript"></script>
+
+    <!-- mixit up js
+============================================ -->
+    <script src="../assets3/js/jquery.mixitup.min.js"></script>
+
+    <!-- Fancybox up js
+============================================ -->
+    <script src="../assets3/js/fancybox/jquery.fancybox.pack.js"></script>
+
+    <!-- Price Slider js
+============================================ -->
+    <script src="../assets3/js/jquery-price-slider.js"></script>
+
+    <!-- owl.carousel.min js 
+============================================ -->
+    <script src="../assets3/js/owl.carousel.min.js"></script>
+
+    <!-- counterUp
+============================================ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/fontawesome.min.js"></script>
+    <script src="../assets3/js/jquery.counterup.min.js"></script>
+
+
+    <!-- Scroll up js
+============================================ -->
+    <script src="../assets3/js/jquery.scrollUp.js"></script>
+
+    <!-- elevator zoom js
+============================================ -->
+    <script src="../assets3/js/jquery.elevateZoom-3.0.8.min.js"></script>
+
+    <!-- mean Menu
+============================================ -->
+    <script src="../assets3/js/jquery.meanmenu.js"></script>
+
+    <!-- wow js
+============================================ -->
+    <script src="../assets3/js/wow.js"></script>
+
+    <!-- chosen.jquery.min.js
+============================================ -->
+    <script src="../assets3/js/chosen.jquery.min.js"></script>
+
+    <!-- plugins js
+============================================ -->
+    <script src="../assets3/js/plugins.js"></script>
+
+    <!-- main js
+============================================ -->
+    <script src="../assets3/js/main.js"></script>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+
+        let name = window.localStorage.getItem('productClick');
+        let username = $('#user-name').text();
+        console.log(username)
+        
+        // hiển thị những sant phẩm đã xem
+        function loadHistory(){
+            // if(!$("#list-history-product").find('.single-product').length)
+            console.log(name)
+            let IDs = window.localStorage.getItem('listIdProducts');
+
+            let listIDProduct = [];
+                        if(IDs && IDs.includes(',')) {
+                            listIDProduct = IDs.split(',');
+                        } else {
+                            listIDProduct.push(IDs);
+                        };
+                        console.log(listIDProduct)
+            if(listIDProduct && listIDProduct.length > 0 ){
+            // $('div').remove("#recomendation-product");
+            // $('#list-recomendation').empty()
+            listIDProduct.forEach(id_product=>{
+                if(id_product && id_product!="undefined"){
+                    $.ajax({
+                   url:`/products/find/${id_product}`,
+                   method:'POST',
+                   success : function(data){
+                       console.log
+                       (data)
+                       if(!data.error && !data.data.error){
+                        data.data.data._fields.forEach((product, index) => {
+                            console.log(product.properties)
+                            if(index == 0){
+                                $('#list-history-product').append(`
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-padd">
+                                                            <div class="single-product" id = "${product.properties.id}">
+                                                                <div class="product-label">
+                                                                    <div class="new"></div>
+                                                                </div>
+                                                                <div class="product-img">
+                                                                    <a href="#">
+                                                                        <img class="primary-image" src="${product.properties.image}" alt="">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="product-content">
+                                                                    <h2 class="product-name"><a href="#">${product.properties.name }</a></h2>
+                                                                    <div class="rating">
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                                                    </div>
+                                                                    <div class="price-box">
+                                                                        <span class="new-price">${product.properties.price}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="product-content2">
+                                                                    <h2 class="product-name"><a href="#">${product.properties.name}</a></h2>
+                                                                    <div class="rating">
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                                                    </div>
+                                                                    <div class="price-box">
+                                                                        <span class="new-price">${product.properties.price}></span>
+                                                                    </div>
+                                                                    <div class="button-container">
+                                                                     
+                                                                    </div>
+                                                                </div>
+                                                                <ul class="add-to-links">
+                                                                    <li>
+                                                                        <div class="wishlist">
+                                                                            <a title="" href="#" data-toggle="tooltip" data-original-title="Add to Wishlist"><i class="fa fa-heart"></i></a>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <div class="view-products">
+                                                                            <a title="" href="#" data-toggle="tooltip" data-placement="top" data-original-title="view pordcuts"><i class="fa fa-arrows-alt"></i></a> </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                           `);
+                        
+                            }
+                           
+
+                        });
+                       }
+                     
+                   },
+                   error : function(error){
+                       console.log(error);
+                   }
+               }) 
+                }
+                
+            })
+               
+			}
+        }
+        loadHistory()
+        function loadProductClick(){
+            let listIDProduct = [];
+                        if(name && name.includes(',')) {
+                            listIDProduct = name.split(',');
+                        } else {
+                            listIDProduct.push(name);
+                        };
+                        console.log(listIDProduct)
+            if(listIDProduct && listIDProduct.length > 0 ){
+            // $('div').remove("#recomendation-product");
+            // $('#list-recomendation').empty()
+            listIDProduct.forEach(name_product=>{
+            if(name_product && name_product!='undefined' ){
+            // $('div').remove("#recomendation-product");
+            // $('#list-recomendation').empty()
+                $.ajax({
+                   url:`/products/watchs/${name_product}`,
+                   method:'POST',
+                   success : function(data){
+                       console.log
+                       (data)
+                        data.data.records.forEach(product => {
+                            console.log($('#list-recomendation').find(`#${product._fields[0].properties.id}`))
+                            console.log($('#list-recomendation').find(`#${product._fields[0].properties.id}`).length)
+                            if(!$('#list-recomendation').find(`#${product._fields[0].properties.id}`).length){
+                            $('#list-recomendation').append(`
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-padd">
+                                                            <div class="single-product" id = "${product._fields[0].properties.id}">
+                                                                <div class="product-label">
+                                                                    <div class="new"></div>
+                                                                </div>
+                                                                <div class="product-img">
+                                                                    <a >
+                                                                        <img class="primary-image" src="${product._fields[0].properties.image}" alt="">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="product-content">
+                                                                    <h2 class="product-name"><a >${product._fields[0].properties.name }</a></h2>
+                                                                    <div class="rating">
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                                                    </div>
+                                                                    <div class="price-box">
+                                                                        <span class="new-price">${product._fields[0].properties.price}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="product-content2">
+                                                                    <h2 class="product-name"><a href="#">${product._fields[0].properties.name}</a></h2>
+                                                                    <div class="rating">
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                                                    </div>
+                                                                    <div class="price-box">
+                                                                        <span class="new-price">${product._fields[0].properties.price}></span>
+                                                                    </div>
+                                                                    <div class="button-container">
+                                                                       
+                                                                    </div>
+                                                                </div>
+                                                                <ul class="add-to-links">
+                                                                    <li>
+                                                                        <div class="wishlist">
+                                                                            <a title="" href="#" data-toggle="tooltip" data-original-title="Add to Wishlist"><i class="fa fa-heart"></i></a>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <div class="view-products">
+                                                                            <a title="" href="#" data-toggle="tooltip" data-placement="top" data-original-title="view pordcuts"><i class="fa fa-arrows-alt"></i></a> </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    
+                           `);
+                        }
+
+                        });
+                   },
+                   error : function(error){
+                       console.log(error);
+                   }
+               }) 
+			}
+          })}
+        }
+        // gợi ý snar phẩm tương tự sản phẩm đã click
+        setTimeout(function(){ 
+            console.log('------')
+            loadProductClick(); }, 2000);
+
+		//cick vào một sản phẩm
+        $('body').on('click','.single-product',function(){
+            let id = $(this).attr("id");
+            let name = $(this).find('.product-content').find('.product-name').find('a').text()
+            console.log(name);
+            let oldName =     window.localStorage.getItem('productClick');
+            let Ids =     window.localStorage.getItem('listIdProducts');
+
+            console.log(oldName)
+            if(Ids == null){
+                window.localStorage.setItem('listIdProducts',id);
+
+            }else{
+                if(!Ids.includes(id)){
+                    let newIDs  = Ids + ',' + id;
+                    window.localStorage.setItem('listIdProducts',newIDs);
+                }
+            }
+
+
+            if(oldName == null){
+
+                window.localStorage.setItem('productClick',name);
+            }else{
+                if(!oldName.includes(name)){
+                let newName  = oldName + ',' + name;
+
+                
+
+                window.localStorage.setItem('productClick',newName);
+                }
+            }
+            console.log(id)
+            if(id && id!= undefined && id!='undefined'){
+                console.log('dayyyyy')
+                window.location.assign(`/products/single-product?id=${id}`);
+                
+            }
+        });
+        
+        // thêm sản phẩm vào giỏ hàng
+        $('body').on('click', '.cart_button', function(){
+            let token_neo4j = window.localStorage.getItem('token_neo4j');
+            let productID = $(this).parents('.single-product').attr('id');
+            console.log(productID)
+
+            if(!productID){
+                productID = $(this).parents('.product-single-details').attr('id');
+            }
+            console.log(productID)
+            let amout = $('#quantity-single-products').val();
+            console.log(amout)
+            if(!amout){
+                 amout = 1
+            }
+            //nếu user đã đăng nhập
+            if(token_neo4j && username){
+                $.ajax({
+                    url:"/orders/new",
+                    method:'POST',
+                    data :  { productID, amout },
+                    success : function(data){
+                        console.log(data)
+                        alert('Sản phẩm đã được thêm vào giỏ hàng')
+                    },
+                    error : function(error){
+                        console.log(error);
+                        alert('có lỗi khi thao tác vui lòng thử lại')                        
+                    }
+                })
+            }else{
+                // chưa đăng nhập thì lưu giỏ hàng vào locakstoger của user
+                let stringOrder = `"product" : ${productID}, "amout" : ${amout}`;
+                console.log(stringOrder);
+            }
+        });
+
+        //  single - product
+     
+    })
+</script>
+</html>

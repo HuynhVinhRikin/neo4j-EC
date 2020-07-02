@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caffe CNPM</title>
+    <link rel="stylesheet" type="text/css" href="/assets/login/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/login/css/fontawesome-all.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/login/css/iofrm-style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/login/css/iofrm-theme1.css">
+</head>
+<body>
+    <div class="form-body">
+        <div class="website-logo">
+            <a href="index.html">
+                <div class="logo">
+                    <img class="logo-size" src="images/logo-light.svg" alt="">
+                </div>
+            </a>
+        </div>
+        <div class="row">
+            <div class="img-holder">
+                <div class="bg"></div>
+                <div class="info-holder">
+
+                </div>
+            </div>
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        <h3>Get more things done with Loggin platform.</h3>
+                        <p>Access to the most powerfull tool in the entire design and web industry.</p>
+                        <div class="page-links">
+                            <a href="/user/dang-nhap">Login</a><a href="/user/dang-ky" class="active">Register</a>
+                        </div>
+                        <form action='/nguoi-dung/register' method='POST'>
+                            <input class="form-control" name="username" placeholder="username" required>
+                            <input class="form-control" type="password" name="password" placeholder="Password" required>
+                            <div class="form-button">
+                                <button id="submit" type="submit" class="ibtn">Register</button>
+                            </div>
+                        </form>
+                        <div class="other-links">
+                            <span>Or register with</span><a href="#">Facebook</a><a href="#">Google</a><a href="#">Linkedin</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="/assets/login/js/jquery.min.js"></script>
+<script src="/assets/login/js/popper.min.js"></script>
+<script src="/assets/login/js/bootstrap.min.js"></script>
+<script src="/assets/login/js/main.js"></script>
+</body>
+</html>
+<script>
+    $(document).ready(function(){
+        <% if (alertErrorRegister) { %>
+            alert('Sai username or password')
+        <% } %>
+    })
+</script>

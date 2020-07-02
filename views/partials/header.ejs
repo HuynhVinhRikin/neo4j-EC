@@ -1,0 +1,405 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Home | Orion</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon
+============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="../assets3/img/favicon.ico">
+
+    <!-- google font CSS
+============================================ -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,300,800' rel='stylesheet' type='text/css'>
+
+    <!-- style CSS
+============================================ -->
+    <link rel="stylesheet" href="../assets3/style.css">
+
+    <script src="../assets3/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/fontawesome.min.css"></script>
+
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+    <!-- Add your site or application content here -->
+
+    <!-- header area start -->
+    <div class="header-area">
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-md-6 col-12">
+                        <div class="single-drop">
+                            <nav>
+                                <ul>
+                                    <li>
+                                    </li>
+                                    <li>
+                                        <label><i class="fa fa-globe"></i>Ngôn ngữ: </label><a href=""><span>Việt Nam</span><i class="fa fa-angle-down"></i></a>
+                                        <ul>
+                                            <li><a href="#">English</a></li>
+                                            <li><a href="#">French</a></li>
+                                            <li><a href="#">German</a></li>
+                                            <li><a href="#">Spanish</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-6 col-12">
+                        <div class="single-menu">
+                            <nav>
+                                <ul>
+                                    <% if (infoUser) { %>
+                                    <li><a id ='user-name' href="my-account.html">Tài khoản: <%=infoUser.name%></a></li>
+                                    <% } else { %> 
+                                    <li><a id ='user-name' href="/login">Bạn chưa đăng nhập</a></li>
+                                    <% } %>
+                                    <li><a href="/customers/cart">Giỏ hàng</a></li>
+                                    <% if (infoUser) { %>
+                                        <li><a class="lastbdr" href="/logout">Đăng xuất</a></li>
+                                    <% } else { %> 
+                                        <li><a class="lastbdr" href="/login">Đăng nhập</a></li>
+                                    <% } %>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-3 col-md-3 col-12">
+                        <div class="logo-area">
+                            <a href="/"><img src="../assets3/img/logo.png" alt="" /></a>
+                        </div>
+                    </div>
+                    <div class="col-xl-7 col-md-6 col-12">
+                        <div class="block-header">
+                        <% if (!infoUser) { %>
+                            <div class="phone"><i class="fa fa-phone"></i>Bạn chưa đăng nhập</div>
+                        <% } else { %> 
+                            <div class="phone"><i class="fa fa-phone"></i> Xin chào <%=infoUser.phone%></div>
+                        <% } %>
+                        </div>
+                        <div class="search-categori">
+                            <div class="categori">
+                                <form id="select-categoris" method="post" class="form-horizontal">
+                                    <select name="language" class="orderby">
+                                    <option value="">Danh mục</option>
+                                    <% if (listCategory && listCategory.length) { %>
+                                        <% listCategory.forEach(category => { %>
+                                            <option value=""><%=category._fields[0].properties.name%></option>
+                                        <% }) %>
+                                    <% } %>
+                                    </select>
+                                </form>
+                            </div>
+                            <div class="search-box">
+                                <form action="#">
+                                    <input type="text" class="form-control input-sm" maxlength="64" placeholder="Nhập tên sản phẩm,">
+                                    <button type="submit">Tìm Kiếm</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-3 col-12">
+                        <div class="shopping-cart expand">
+                            <a href="/customers/cart"><span>Giỏ Hàng</span></a>
+                            <div class="restrain small-cart-content">
+                                <ul class="cart-list">
+                                     <% let totalPrice = 0%>
+                                <% if(infoOder.length>0) {infoOder.forEach(record=>{ %>
+                                    <li>
+                                        <a class="sm-cart-product" href="product-details.html">
+                                            <img style ="height: 50px; width: 50px;" src="<%= record._fields[0].properties.image %>" alt="">
+                                        </a>
+                                        <div class="small-cart-detail">
+                                            <a class="remove" href="#"><i class="fa fa-times-circle-o"></i></a>
+                                            <a href="#" class="edit-btn"><img src="../assets3/img/btn_edit.gif" alt="Edit Button"></a>
+                                            <a class="small-cart-name" href="product-details.html"><%= record._fields[0].properties.name %></a>
+                                            <span class="quantitys"><strong><%= record._fields[1].properties.HAVE %></strong>x<span><%= record._fields[0].properties.price %></span></span>
+                                       
+                                       <% totalPrice += Number(record._fields[1].properties.HAVE ) * Number( record._fields[0].properties.price)%>
+                                        </div>
+                                    </li>
+
+                                   
+                                <% })} %>
+                              
+                                </ul>
+                                <p class="total">Subtotal: <span class="amount"><%= totalPrice %></span></p>
+                                <p class="buttons">
+                                    <a href="checkout.html" class="button">Mua Hàng</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <!-- main-menu start -->
+                        <div class="main-menu">
+                            <nav>
+                                <ul>
+                                    <li><a href="shop.html">Danh mục</a>
+                                        <div class="mega-menu">
+                                            <% if (listCategory && listCategory.length) { %>
+                                                <% listCategory.forEach(category => { %>
+                                                    <div class="mega-catagory">
+                                                        <a href="/customers/list-products-of?categoryID=<%=category._fields[0].properties.id%>">
+                                                            <img src="../assets3/img/menu/clothing_hover.png" alt="" />
+                                                            <span><%=category._fields[0].properties.name%></span>
+                                                        </a>
+                                                    </div>
+                                                <% }) %>
+                                            <% } %>
+                                            <!--
+                                            <div class="mega-catagory">
+                                                <a href="shop.html">
+                                                    <img src="../assets3/img/menu/football_hover_1.png" alt="" />
+                                                    <span>Sports</span>
+                                                </a>
+                                                <a href="shop.html">
+                                                    <img src="../assets3/img/menu/tools_hover_1.png" alt="" />
+                                                    <span>Equipments</span>
+                                                </a>
+                                            </div>
+                                            <div class="mega-catagory">
+                                                <a href="shop.html">
+                                                    <img src="../assets3/img/menu/leaf_hover.png" alt="" />
+                                                    <span>Health</span>
+                                                </a>
+                                                <a href="shop.html">
+                                                    <img src="../assets3/img/menu/clock_hover_1.png" alt="" />
+                                                    <span>Watches</span>
+                                                </a>
+                                            </div>
+                                            <div class="mega-catagory">
+                                                <a href="shop.html">
+                                                    <img src="../assets3/img/menu/lab_hover.png" alt="" />
+                                                    <span>Medical</span>
+                                                </a>
+                                                <a href="shop.html">
+                                                    <img src="../assets3/img/menu/bookmark_hover_1.png" alt="" />
+                                                    <span>Books</span>
+                                                </a>
+                                            </div>
+                                            <div class="mega-catagory">
+                                                <a href="shop.html">
+                                                    <img src="../assets3/img/menu/speaker_hover_4.png" alt="" />
+                                                    <span>Electronics</span>
+                                                </a>
+                                                <a href="shop.html">
+                                                    <img src="../assets3/img/menu/gift_hover_1.png" alt="" />
+                                                    <span>Gifts</span>
+                                                </a>
+                                            </div>
+                                        -->
+                                        </div>
+                                    </li>
+                                    <li><a href="shop.html">Sản phẩm mới</a>
+                                        <div class="mega-menu carousel-btn mega-menu-2 pt20 pb20">
+                                            <div class="menu-carousel">
+                                                <% if (listNewProducts && listNewProducts.records.length) { %>
+                                                    <% listNewProducts.records.forEach(product => { %>
+                                                    <!-- single-product start -->
+                                                    <div class="col-12 col-padd">
+                                                        <div class="single-product">
+                                                            <div class="product-label">
+                                                                <div class="new"></div>
+                                                            </div>
+                                                            <div class="product-img">
+                                                                <a href="#">
+                                                                    <img class="primary-image" src="<%=product._fields[0].properties.image%>" alt="" />
+                                                                </a>
+                                                            </div>
+                                                            <div class="product-content">
+                                                                <h2 class="product-name"><a href="#"><%=product._fields[0].properties.name%></a></h2>
+                                                                <div class="rating">
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star-o"></i></a>
+                                                                </div>
+                                                                <div class="price-box">
+                                                                    <span class="new-price"><%=product._fields[0].properties.price%></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- single-product end -->
+                                                    <% }) %>
+                                                <% } %>
+                                              <!--
+                                                <div class="col-12 col-padd">
+                                                    <div class="single-product">
+                                                        <div class="product-label">
+                                                            <div class="new"></div>
+                                                        </div>
+                                                        <div class="product-img">
+                                                            <a href="#">
+                                                                <img class="primary-image" src="../assets3/img/product/product-2.jpg" alt="" />
+                                                            </a>
+                                                        </div>
+                                                        <div class="product-content">
+                                                            <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                                            <div class="rating">
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star-o"></i></a>
+                                                            </div>
+                                                            <div class="price-box">
+                                                                <span class="new-price">$222.00</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                -->
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a href="shop.html">Giảm Giá</a>
+                                        <div class="mega-menu carousel-btn mega-menu-3 pb20 pt20">
+                                            <div class="menu-carousel">
+                                                <%if(saleProduct.length>0){ saleProduct.forEach(product=>{%>
+                                                    <%
+                                                    let priceProduct = product._fields[0].properties.price;
+                                                    let classSale = ''
+                                                    if(product._fields[0].properties.newPrice && product._fields[0].properties.newPrice!=0){
+                                                        priceProduct = product._fields[0].properties.newPrice;
+                                                        classSale = 'sale';
+                                                    }
+                                                    %>
+                                                <!-- single-product start -->
+                                                <div class="col-12 col-padd">
+                                                    <div class="single-product">
+                                                        <div class="product-label">
+                                                            <div class="sale"></div>
+                                                        </div>
+                                                        <div class="product-img">
+                                                            <a href="/products/single-product?id=<%=product._fields[0].properties.id%>">
+                                                                <img class="primary-image" src="<%=product._fields[0].properties.image%>" alt="" />
+                                                            </a>
+                                                        </div>
+                                                        <div class="product-content">
+                                                            <h2 class="product-name"><a href="#"><%=product._fields[0].properties.name%></a></h2>
+                                                            <div class="rating">
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star-o"></i></a>
+                                                            </div>
+                                                            <div class="price-box">
+                                                                <span class="new-price"><%=priceProduct%></span>
+                                                                <span class='old-rpice'><del>
+                                                                    <%= product._fields[0].properties.price
+                                                                    %></del></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <%})}%>
+                                                <!-- single-product end -->
+                                                <!-- single-product start -->
+                                              
+                                                <!-- single-product end -->
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a href="shop.html">Bán Chạy</a>
+                                        <div class="mega-menu mega-menu-4 pb20 pt20">
+                                            <div class="menu-carousel carousel-btn">
+                                                <%let arrayIdP = ''%>
+
+                                                <% listBestSeller.forEach((product, index) =>{%>
+                                                    <%if((product._fields[0])){%>
+                                                    <%if(!arrayIdP.includes(product._fields[0].properties.id) && product._fields[0].labels[0] == 'Products'){%>
+                                                        
+                                                        <div class="col-12 col-padd">
+                                                            <div class="single-product">
+                                                                <div class="product-label">
+                                                                    <div class="new"></div>
+                                                                </div>
+                                                                <div class="product-img">
+                                                                    <a href="#">
+                                                                        <img class="primary-image" src="<%= product._fields[0].properties.image %>" alt="" />
+                                                                    </a>
+                                                                </div>
+                                                                <div class="product-content">
+                                                                    <h2 class="product-name"><a href="#"><%= product._fields[0].properties.name %></a></h2>
+                                                                    <div class="rating">
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                                                    </div>
+                                                                    <div class="price-box">
+                                                                        <span class="new-price"><%= product._fields[0].properties.price %></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <%}%>
+                                                        <% arrayIdP += ','+ product._fields[0].properties.id%>
+                                                        <%}%>
+                                                    <%})%>
+                                                <!--<div class="col-12 col-padd">
+                                                    <div class="single-product">
+                                                        <div class="product-label">
+                                                            <div class="new"></div>
+                                                        </div>
+                                                        <div class="product-img">
+                                                            <a href="#">
+                                                                <img class="primary-image" src="../assets3/img/product/product-6.jpg" alt="" />
+                                                            </a>
+                                                        </div>
+                                                        <div class="product-content">
+                                                            <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                                            <div class="rating">
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star-o"></i></a>
+                                                            </div>
+                                                            <div class="price-box">
+                                                                <span class="new-price">$222.00</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            -->
+                                                <!-- single-product end -->
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a href="about-us.html">Thông Tin Về Chúng Tôi</a></li>
+                                    <li><a href="contact.html">Liên Hệ</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        </div>

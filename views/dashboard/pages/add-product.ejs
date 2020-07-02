@@ -1,0 +1,109 @@
+<%- include ('../partials/header')%>
+<%- include ('../partials/sidebar')%>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+    
+          <h4 class="form-header text-uppercase">
+            <i class="fa fa-user-circle-o"></i>
+            Thông Tin Sản Phẩm
+          </h4>
+          <div class="form-group row">
+            <label for="input-2" class="col-sm-2 col-form-label">Tên Sản Phẩm</label>
+            <div class="col-sm-10">
+              <input type="text" name='productName' id="productName" class="form-control" placeholder="Vd: Caffe Sua"
+                required>
+            </div>
+          </div>
+
+          <h4 class="form-header">
+            <i class="fa fa-file-text-o"></i>
+            YÊU CẦU
+          </h4>
+          <div class="form-group row">
+            <label for="input-6" class="col-sm-2 col-form-label">Chọn Danh Mục</label>
+            <div class="col-sm-10">
+              <select class="form-control" name='category' id="category" required>
+                <% data.forEach( category =>{%>
+                <option><%=category._fields[0].properties.name%></option>
+                <% })%>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="input-2" class="col-sm-2 col-form-label">Đơn giá</label>
+            <div class="col-sm-10">
+              <input type="text" name='price' id="price" class="form-control input-price" placeholder="20.000 VNĐ"
+                required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="input-2" class="col-sm-2 col-form-label">Số lượng</label>
+            <div class="col-sm-10">
+              <input type="text" name='amout' id="amout" class="form-control input-price" placeholder="20.000 VNĐ"
+                required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="input-6" class="col-sm-2 col-form-label">Upload Avatar</label>
+            <input type="file" name="avatar" id='uploadAvatar'>
+          </div>
+          <div class="form-footer">
+            <button class="btn btn-danger"><i class="fa fa-times"></i>REMOVE</button>
+            <button class="btn btn-success" id="btnLuu">
+              <i class="fa fa-check-square-o"></i>
+              Lưu vào CSDL
+            </button>
+          </div>
+    
+      </div>
+    </div>
+  </div>
+</div>
+<!--End Row-->
+<script src="/cleave.lib.js"></script>
+<script src="/cleave.js"></script>
+<%- include ('../partials/footer')%>
+
+<script>
+  $(document).ready(function () {
+    $('#btnLuu').click(function(){
+      let productName = $("#productName").val();
+      let categoryName = $( "#category option:selected" ).text();
+      let amout = $("#amout").val();
+      let price = $("#price").val();
+      let image = document.getElementById('uploadAvatar');
+      var myFormData = new FormData();
+      myFormData.append('avatar', image.files[0]);
+      myFormData.append('productName',productName);
+      myFormData.append('category', categoryName);
+      myFormData.append('amout', amout);
+      myFormData.append('price', price);
+      setTimeout(function(){
+        $.ajax({
+          url : '/products/new-product',
+          type : 'post',
+          dataType: 'json',
+          contentType: false,
+          processData: false,
+          data: myFormData,
+          success : function(result){
+             if(result.error){
+               alert('Thêm sản phẩm thất bại vui lòng kiểm tra lại thông tin');
+             }else{
+               alert('Thêm sản phẩm thành công');
+             }
+
+          },
+          error : function(error){
+            console.log(error);
+          }
+        })
+      },100)
+      
+  })
+    
+  });
+  
+</script>

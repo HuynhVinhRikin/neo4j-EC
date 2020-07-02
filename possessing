@@ -1,0 +1,27 @@
+11/14/2019=======================
+   *BACKEND : 
+    - create PORDUCT, CUSTOMER, CATEGORY (done)
+    - pending..
+         oderline, order.
+         relationship :
+            CUSTOMER with PORDUCT
+            CUSTOMER with ORDER
+            ORDER with CATEGORY
+            PORDUCT with CATEGORY (done)
+    
+    - click Watch PORDUCT : make math CUSTOMER with PORDUCT : Watch
+    - Search Product      : make math 
+    *FONTEND:
+     -view shopping, view login, view dashboad
+     -event special:
+         click Watch product
+         order product
+         payment order
+15/11/2019=========================
+pendding
+19/11/2019==========================
+
+
+
+
+            

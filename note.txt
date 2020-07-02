@@ -1,0 +1,26 @@
+findByID: await session.run('match (c:Categorys{id: $id}) return c');
+Insert: 'CREATE (a:Categorys { id: $id, name : $categoryName, status : $categoryStatus}) RETURN a'
+findAll: `MATCH (n:Categorys) RETURN n `
+findByIdAndDelete: `MATCH (n:Categorys{id:$idCategory}) DETACH DELETE n`
+findOneAndUpdate: `MATCH (Categorys { name: $nameCategory })
+                    SET
+                        Categorys.oldMajority = $oldMajority ,
+                        Categorys.maleMajority = $maleMajority
+                    RETURN Categorys`;
+
+Tạo mối quan hệ =====>
+            `MATCH (c1:Customers { name: 'dat' }),(c2:Customers { name: 'tothanhdat' })
+             CREATE (c2)-[:SAMEHOBBIES ]->(c1)
+             CREATE (c1)-[:SAMEHOBBIES ]->(c2)`;
+
+Tìm tất cả sản phẩm của danh mục: `MATCH(:Categorys {id : $categoryID})<--(products :Products)
+                                    RETURN products`
+
+Tìm sản phẩm theo tuổi và giới tính:    `MATCH (cus:Customers { phone:$phone })
+                                        MATCH (category:Categorys { maleMajority:cus.male })
+                                        MATCH(:Categorys {name : category.name})<--(products :Products)
+                                        RETURN products`;
+
+Tìm sản phẩm theo giá: `MATCH(p:Products) where p.price >$startPrice  and p.price <$endPrice`
+
+Tìm những sản phẩm mua nhiều nhất: `MATCH (Orders)-[:HAVE]->(P: Products)`

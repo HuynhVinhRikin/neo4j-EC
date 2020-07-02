@@ -1,0 +1,48 @@
+<script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/popper.min.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+	
+  <!-- simplebar js -->
+  <script src="/assets/plugins/simplebar/js/simplebar.js"></script>
+  <!-- sidebar-menu js -->
+  <script src="/assets/js/sidebar-menu.js"></script>
+  
+  <!-- Custom scripts -->
+  <script src="/assets/js/app-script.js"></script>
+
+  <!--Form Validatin Script-->
+    <script src="/assets/plugins/jquery-validation/js/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script>
+    toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+                }
+    $().ready(function() {
+   // validate signup form on keyup and submit
+    
+});
+$('body').on('click', '.btnRemove', function(){
+        const idXoa = $(this).attr('_id');
+        $(`#${idXoa}`).remove(); 
+        const username = $(this).attr('_username');
+        toastr.success(`Xóa Thành Công @${username}`);
+    })
+    </script>
+</body>
+</html>

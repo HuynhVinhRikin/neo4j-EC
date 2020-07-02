@@ -1,0 +1,80 @@
+<%- include ('../partials/header')%>
+<%- include ('../partials/sidebar')%>
+<div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+                <h4 class="form-header text-uppercase">
+                  <i class="fa fa-user-circle-o"></i>
+                   THÊM DANH MỤC
+                </h4>
+                <div class="form-group row">
+                  <label for="input-2" class="col-sm-2 col-form-label">Tên Danh Mục</label>
+                  <div class="col-sm-10">
+                    <input type="text" name='nameCategory' id="category-name" class="form-control" required>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="input-2" class="col-sm-2 col-form-label">Tên Danh Mục</label>
+                  <div class="col-sm-10">
+                    <input type="text" name='nameCategory' id="" class="form-control" required>
+                  </div>
+                </div>
+                <h2>Có thể điền hoặc bỏ trống</h2>
+                <div class="form-group row">
+                  <label for="input-2" class="col-sm-2 col-form-label">đối tượng thường mua</label>
+                  <select class="form-control" name='category' id="sex" required>
+                      <option value="1">nam</option>
+                      <option value="0">nu</option>
+                      <option value="2">ca 2</option>
+                    </select>
+                </div>
+                <div class="form-group row">
+                  <label for="input-2" class="col-sm-2 col-form-label">độ tuổi thường mua</label>
+                  <select class="form-control" name='category' id="old" required>
+                      <option value="20">duoi 20</option>
+                      <option value="35">tu 20 den 35</option>
+                      <option value="40">tu 35 tro len </option>
+                    </select>
+                </div>
+                
+                <div class="form-footer">
+                    <button  class="btn btn-success" id="btnLuu">
+                      <i class="fa fa-check-square-o" ></i> 
+                      Lưu vào CSDL
+                    </button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div><!--End Row-->
+<%- include ('../partials/footer')%>
+
+<script>
+  $(document).ready(function(){
+    $('#btnLuu').click(function(){
+      let categoryName = $('#category-name').val();
+      let old = '';
+      let sex = '';
+      old =  $( "#old option:selected" ).val();
+      sex = $( "#sex option:selected" ).val();
+      console.log({old, sex})
+      $.ajax({
+        url : '/categorys/new-category',
+        method : 'post',
+        data:{
+          categoryName : categoryName,
+          old : old,
+          sex : sex
+        },
+        success : function(data){
+          window.location.href = "/categorys/list";
+        },
+        error : function(error){
+          console.log(error);
+          alert('loi khong the them san pham vui long kiem tra lai thong tin da nhap')
+        }
+      })
+    });
+  })
+</script>

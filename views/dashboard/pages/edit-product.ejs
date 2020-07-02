@@ -1,0 +1,66 @@
+<%- include ('../partials/header')%>
+<%- include ('../partials/sidebar')%>
+<div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <form action='/san-pham/update/<%=infoProduct && infoProduct._id %>' method='POST' enctype="multipart/form-data">
+                <h4 class="form-header text-uppercase">
+                  <i class="fa fa-user-circle-o"></i>
+                   Thông Tin Sản Phẩm
+                </h4>
+                <div class="form-group row">
+                  <label for="input-2" class="col-sm-2 col-form-label">Avatar</label>
+                  <img src="/image/<%=infoProduct && infoProduct.avatar %>" width="100px" height="100px" alt="your_image">
+                  <div class="col-sm-10">
+                  <br>
+                <div class="form-group row">
+                  <label for="input-2" class="col-sm-2 col-form-label">Tên Sản Phẩm</label>
+                  <div class="col-sm-10">
+                    <input type="text" name='nameProduct' value='<%=infoProduct && infoProduct.nameProduct %>' id="idProduct" class="form-control" required>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="input-3" class="col-sm-2 col-form-label">Mã Sản Phẩm</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="idProduct" value='<%=infoProduct && infoProduct.idProduct %>'name='idProduct' class="form-control" required>
+                  </div>
+                </div>
+                <h4 class="form-header">
+                <i class="fa fa-file-text-o"></i>
+                  YÊU CẦU
+                </h4>
+                <div class="form-group row">
+                  <label for="input-6" class="col-sm-2 col-form-label">Chọn Danh Mục</label>
+                  <div class="col-sm-10">
+                    <select class="form-control" name='idCategory' id="idCategory" required>
+                    <% if (listCategory && listCategory.length > 0) { %>
+                     <% listCategory.forEach(category => { %>
+                        <option><%=category.nameCategory%></option>
+                     <% }) %>
+                    <% } %>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="input-2" class="col-sm-2 col-form-label">Đơn giá</label>
+                  <div class="col-sm-10">
+                    <input type="text" name='price' value='<%=infoProduct && infoProduct.price %>' id="idProduct" class="form-control" required>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="input-6" class="col-sm-2 col-form-label">Upload Avatar</label>
+                  <input type="file" name="avatar" id="uploadAvatar" value="<%=infoProduct && infoProduct.avatar %>">
+                </div>
+                <div class="form-footer">
+                    <button  class="btn btn-success" id="btnSua" type='submit'>
+                      <i class="fa fa-check-square-o" ></i>
+                      Lưu lại
+                    </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div><!--End Row-->
+<%- include ('../partials/footer')%>

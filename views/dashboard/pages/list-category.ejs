@@ -1,0 +1,66 @@
+<%- include ('../partials/header')%>
+<%- include ('../partials/sidebar')%>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header"><i class="fa fa-table"></i> Data Table Example</div>
+            <div class="card-body">
+              <div class="table-responsive">
+              <table id="default-datatable" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Name</th>
+                        <th>status</th>
+                        <th>oldMajority</th>
+                        <th>maleMajority</th>
+                        <th>Tuy Chon</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.forEach( category =>{%>
+                    <tr>
+                        <td><%= category._fields[0].properties.id %></td>
+                        <td><%= category._fields[0].properties.name %></td>
+                        <td><%=  category._fields[0].properties.status %></td>
+                        <td> <%= category._fields[0].properties.oldMajority %></td>
+                        <td> <%= category._fields[0].properties.maleMajority %></td>
+                        <td>
+                          <button ><a href="/categorys/update/<%=category._fields[0].properties.id%>">Sua</a></button>
+                          <button id ='<%=category._fields[0].properties.id%>' class ='btn-delete-category'> Xoa</button>
+                        </td>
+                    </tr>
+                    <% })%>
+                </tbody>
+               
+            </table>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<script src="/cleave.lib.js"></script>
+<script src="/cleave.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+  $(document).ready(function(){
+    $('.btn-delete-category').click(function(){
+      let id = $(this).attr('id');
+      console.log({id})
+      $.ajax({
+        url:`/categorys/delete/${id}`,
+        method : 'post',
+        success : function(data){
+          alert('xoa thanh cong');
+          location.reload();
+        },
+        error : function(error){
+            console.log(error)
+        }
+      });
+    })
+  })
+</script>
+<%- include ('../partials/footer')%>

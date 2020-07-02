@@ -1,0 +1,368 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+	<!-- Basic page needs -->
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title> </title>
+	<meta name="description" content="">
+	<!-- Mobile specific metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.png">
+    
+	<!-- all css hare -->
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/owl.carousel.css">
+	<link rel="stylesheet" href="/css/animate.min.css">
+	<link rel="stylesheet" href="/css/TimeCircles.css">
+	<link rel="stylesheet" href="/css/jquery-ui.css">
+	<link rel="stylesheet" href="/css/venobox.css">
+	<link rel="stylesheet" href="/css/elegent-font.css">
+	<link rel="stylesheet" href="/css/meanmenu.css">
+	<link rel="stylesheet" href="/lib/css/nivo-slider.css">
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/style.css">
+	<link rel="stylesheet" href="/css/responsive.css">
+	
+	<!-- modernizr js -->
+	<script src="/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+	<!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+	<!-- site content here -->
+	<div class="page-inner">
+		<!-- single-header-area start -->
+		<%- include ('./partials/header') %>
+		
+		<div class="product-details-area pt-85 md-pt-55 small-pt-30">
+			<div class="container">
+				<div class="row">
+					<div class="product-details-main">
+						<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+							<div class="single-product-img">
+								<div class="pro-img-tab-content tab-content">
+									<div class="tab-pane active" id="image-1">
+										<div class="compare-img">
+											<a class="venobox" href="/img/single-product/big/1.jpg" data-gall="gallery" title="">
+												<img src="<%= product.image %>" alt="">
+											</a>
+											<a class="new-box" href="#">
+												<span class="new-label">Mới</span>
+											</a>
+										</div>
+									</div>
+									<div class="tab-pane" id="image-2">
+										<div class="compare-img">
+											<!-- <a class="venobox" href="/img/single-product/big/2.jpg" data-gall="gallery" title="">
+												<img src="img/single-product/big/2.jpg" alt="">
+												<span class="expand-button">View Larger<i class="fa fa-search-plus" aria-hidden="true"></i></span>
+											</a> -->
+											<!-- <a class="new-box" href="#">
+												<span class="new-label">Mới</span>
+											</a> -->
+										</div>
+									</div>
+									<div class="tab-pane" id="image-3">
+										<div class="compare-img">
+											<a class="venobox" href="/img/single-product/big/3.jpg" data-gall="gallery" title="">
+												<img src="img/single-product/big/3.jpg" alt="">
+												<span class="expand-button">View Larger<i class="fa fa-search-plus" aria-hidden="true"></i></span>
+											</a>
+											<a class="new-box" href="#">
+												<span class="new-label">New</span>
+											</a>
+										</div>
+									</div>
+									<div class="tab-pane" id="image-4">
+										<div class="compare-img">
+											<a class="venobox" href="/img/single-product/big/4.jpg" data-gall="gallery" title="">
+												<img src="img/single-product/big/4.jpg" alt="">
+												<span class="expand-button">View Larger<i class="fa fa-search-plus" aria-hidden="true"></i></span>
+											</a>
+											<a class="new-box" href="#">
+												<span class="new-label">New</span>
+											</a>
+										</div>
+									</div>
+									<div class="tab-pane" id="image-5">
+										<div class="compare-img">
+											<a class="venobox" href="/img/single-product/big/5.jpg" data-gall="gallery" title="">
+												<img src="img/single-product/big/5.jpg" alt="">
+												<span class="expand-button">View Larger<i class="fa fa-search-plus" aria-hidden="true"></i></span>
+											</a>
+											<a class="new-box" href="#">
+												<span class="new-label">New</span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="product-tab-slider">
+									<div class="col-lg-12">
+										<a href="#image-1" data-toggle="tab">
+											<img src="img/single-product/small/1.jpg" alt="">
+										</a>
+									</div>
+									<div class="col-lg-12">
+										<a href="#image-2" data-toggle="tab">
+											<img src="img/single-product/small/2.jpg" alt="">
+										</a>
+									</div>
+									<div class="col-lg-12">
+										<a href="#image-3" data-toggle="tab">
+											<img src="img/single-product/small/3.jpg" alt="">
+										</a>
+									</div>
+									<div class="col-lg-12">
+										<a href="#image-4" data-toggle="tab">
+											<img src="img/single-product/small/4.jpg" alt="">
+										</a>
+									</div>
+									<div class="col-lg-12">
+										<a href="#image-5" data-toggle="tab">
+											<img src="img/single-product/small/5.jpg" alt="">
+										</a>
+									</div>	
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+							<div class="single-product-content">
+								<h1><%= product.name %></h1>
+								<div class="hook-reviews">
+									<i class="fa fa-star-o" aria-hidden="true"></i>
+									<i class="fa fa-star-o" aria-hidden="true"></i>
+									<i class="fa fa-star-o" aria-hidden="true"></i>
+									<i class="fa fa-star-o" aria-hidden="true"></i>
+									<i class="fa fa-star-o black" aria-hidden="true"></i>
+								</div>
+							
+								<div class="price">
+									<p>$ <%= product.price %></p>
+								</div>
+								
+								<div class="quantity-no">
+									<label>Số lượng</label>
+									<input value="1" id='amout_product' type="number">
+									<i class="fa fa-plus" aria-hidden="true"></i>
+									<i class="fa fa-minus" aria-hidden="true"></i>
+								</div>
+									<div class="upper-icon">
+									<a class="add-button btn-add-cart" id = '<%=product.id%>'>+Thêm vào giỏ hàng</a>
+								
+								</div>
+								
+								<p>mô tả : <%= product.decripton %></p>
+							
+								<p>binh luan : </p>
+								<br>
+								<input ><button>Binh luan</button>
+							</div>
+						</div>
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- product-details-area end -->
+		<!-- single-feature-area start -->
+	
+		<!-- single-feature-area end -->
+		<!-- single-feature-area start -->
+		
+		<!-- single-feature-area end -->
+		<!-- single-service-area start -->
+		
+		<!-- single-service-area end -->
+		<!-- single-footer-top-area start -->
+	
+		<!-- single-footer-top-area end -->
+		<!-- single-footer-banner-area start -->
+		<%- include ('./partials/footer') %>
+
+	</div>
+
+	<!-- all js here -->
+	<script src="/js/vendor/jquery-1.12.0.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/lib/js/jquery.nivo.slider.pack.js"></script>
+	<script src="/lib/js/nivo-active.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
+	<script src="/js/wow.min.js"></script>
+	<script src="/js/TimeCircles.js"></script>
+	<script src="/js/venobox.js"></script>
+	<script src="/js/jquery-ui.min.js"></script>
+	<script src="/js/jquery.meanmenu.js"></script>
+	<script src="/js/jquery.scrollUp.js"></script>
+	<script src="/js/plugins.js"></script>
+	<script src="/js/main.js"></script>
+</body>
+
+	<!-- all js here -->
+	<script src="/js/vendor/jquery-1.12.0.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/lib/js/jquery.nivo.slider.pack.js"></script>
+	<script src="/lib/js/nivo-active.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
+	<script src="/js/wow.min.js"></script>
+	<script src="/js/TimeCircles.js"></script>
+	<script src="/js/venobox.js"></script>
+	<script src="/js/jquery-ui.min.js"></script>
+	<script src="/js/jquery.meanmenu.js"></script>
+	<script src="/js/jquery.scrollUp.js"></script>
+	<script src="/js/plugins.js"></script>
+    <script src="/js/main.js"></script>
+    
+    <script>
+
+        
+    $(document).ready(function(){
+       	
+		let idProduct = $('.btn-add-cart').attr('id');
+		let idCustomer = $('.customer-name').attr("id");
+		let listIdProductOrder = JSON.parse(window.localStorage.getItem('litsProductOrder'));
+		console.log(listIdProductOrder);
+		console.log(typeof(listIdProductOrder));
+		console.log(idProduct);
+		if(idCustomer!=''){
+			let time = 1;
+			$.ajax({ 
+                url: "/products/forcus",
+                method: "POST",
+                data: { time : time, idCustomer : idCustomer, idProduct : idProduct },
+                success :function(data){
+					console.log('object');
+                },
+                error(){
+                }
+			}) ;
+		}
+		if(listIdProductOrder!='null' &&listIdProductOrder){	
+			console.log('khac null');
+			console.log(listIdProductOrder)
+			console.log(listIdProductOrder[0])
+			listIdProductOrder.forEach(id_product =>{
+				$.ajax({
+					url : `/products/find/${id_product.idProduct}`,
+					method : 'post',
+					success :function(result){
+						console.log(result.data.data._fields[0].properties);
+						$('.cart-open').append(`
+								<li class="single-cart">
+									<div class="cart-img">
+										<a href="#"><img src="${result.data.data._fields[0].properties.image}" alt="" /></a>
+									</div>
+									<div class="cart-content">
+										<h4><a href="#">1X <span>${result.data.data._fields[0].properties.name}</span></a></h4>
+										<span><a href="#">${id_product.amout} </a></span>
+										<span class="cart-price">${result.data.data._fields[0].properties.price}</span>
+									</div>
+									<div class="cart-del">
+										<i id="${result.data.data._fields[0].properties.id}"" class="fa fa-times" aria-hidden="true"></i>
+									</div>
+								</li>
+						`);
+					},
+					error : function(error){
+						console.log(error)
+					}
+				})
+			})
+		
+		}
+		$('.btn-add-cart').click(function(){
+			console.log('object');
+			let  amout = $('#amout_product').val();
+			console.log({amout});
+			if(idCustomer!=''&&idCustomer){ //logined
+				//create order line or update order old -- status order pedding 
+				if($('.cart-open').children('li').length == 0){
+					console.log('hello_create_new_order')
+					let timeOrder = new Date();	
+					$.ajax({
+					url:'/orders/new',
+					method:'post',
+					data : {
+						idCustomer : idCustomer,
+						"listProduct" : [{"id" : idProduct,
+						"amout" : amout}],
+						timeOrder : timeOrder
+					},
+					success: function(result){
+						console.log(result);
+						
+					$('.cart-open').append(``);
+					},
+					error : function(error){
+						console.log(error);
+					}
+				});
+				}else{
+					$.ajax({
+					url:'/orders/update',
+					method:'post',
+					data : {
+						idCustomer : idCustomer,
+						idProduct : idProduct,
+						amout : amout
+					}
+				});
+
+				$('.cart-open').append(``);
+
+				}
+				
+				
+			}
+			//if not login will save listidProduct to localstoreg
+			if(listIdProductOrder!='null'&& listIdProductOrder!=null &&listIdProductOrder){ // if list had been
+				console.log(listIdProductOrder);
+				listIdProductOrder.push({idProduct, amout});
+				window.localStorage.removeItem('litsProductOrder');
+				window.localStorage.setItem('litsProductOrder', JSON.stringify (listIdProductOrder));
+			
+			}else{
+				listIdProductOrder = []
+				console.log({idProduct, amout})
+				console.log(listIdProductOrder)
+				listIdProductOrder.push({idProduct, amout});
+				console.log(newListProductOrder);
+				window.localStorage.removeItem('litsProductOrder');
+				window.localStorage.setItem('litsProductOrder',JSON.stringify (newListProductOrder));
+			}
+			$('.cart-open').append(`
+					<li class="single-cart">
+						<div class="cart-img">
+							<a href="#"><img src="/img/cart/1.jpg" alt="" /></a>
+						</div>
+						<div class="cart-content">
+							<h4><a href="#">1X <span>Faded Short Sleeves <br>T-shirt</span></a></h4>
+							<span><a href="#">S, Yellow </a></span>
+							<span class="cart-price">$ 16.84</span>
+						</div>
+						<div class="cart-del">
+							<i class="fa fa-times" aria-hidden="true"></i>
+						</div>
+					</li>
+			`);
+
+			alert('đã thêm sản phầm vào giỏ');
+
+		}); 
+	
+
+
+	
+		
+
+		
+	 })  
+    
+    
+</script>
+</html>

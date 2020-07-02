@@ -1,0 +1,147 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Home | Orion</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon
+============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="../assets3/img/favicon.ico">
+
+    <!-- google font CSS
+============================================ -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,300,800' rel='stylesheet' type='text/css'>
+
+    <!-- style CSS
+============================================ -->
+    <link rel="stylesheet" href="../assets3/style.css">
+
+    <script src="../assets3/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/fontawesome.min.css"></script>
+
+</head>
+<div class="my-account-area pt50 pb50">
+            <div class="container">
+                <div class="row">
+                <div class="col-lg-6 col-md-6 col-12">
+                        <form action="#">
+                            <div class="form-fields">
+                                <h2>Đăng ký</h2>
+                                <p>
+                                    <label>Họ và tên <span class="required">*</span></label>
+                                    <input id="customerName" type="text">
+                                </p>
+                                <p>
+                                    <label>Email <span class="required">*</span></label>
+                                    <input id="email" type="text">
+                                </p>
+                                <p>
+                                    <label>Số điện thoại <span class="required">*</span></label>
+                                    <input id="phoneNumberRegister" type="text">
+                                </p>
+                                <p>
+                                    <label>Giới tính <span class="required">*</span></label>
+                                    <select id="sex">
+                                        <option value="1">Nam</option>
+                                        <option value="0">Nữ</option>
+                                    </select>
+                                </p>
+                                <p>
+                                    <label>Mật khẩu <span class="required">*</span></label>
+                                    <input id="passwordRegister" type="password">
+                                </p>
+                            </div>
+                            <div class="form-action">
+                                <input class="btnRegister" type="submit" value="Đăng ký">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <form action="#">
+                            <div class="form-fields">
+                                <h2>Đăng nhập</h2>
+                                <p>
+                                    <label>Số điện thoại <span class="required">*</span></label>
+                                    <input id="phoneNumber" type="text">
+                                </p>
+                                <p>
+                                    <label>Mật khẩu <span class="required">*</span></label>
+                                    <input id="password" type="password">
+                                </p>
+                            </div>
+                            <div class="form-action">
+                                <p class="lost_password"><a href="#">Quên mật khẩu?</a></p>
+                                <input class="btnLogin" type="submit" value="Đăng nhập">
+                                <label>
+                                    <input type="checkbox"> Remember me </label>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+                        
+<%- include ('../partials/footer')%>
+
+<script>
+    $(document).on('click', '.btnLogin', function(e) {
+		e.preventDefault();
+        let phoneNumber = $('#phoneNumber').val();
+        let password = $('#password').val();
+
+        $.ajax({
+                url: `/customers/login`,
+                method: 'POST',
+                data: { phoneNumber, password },
+                success: resp => {
+                    console.log({ resp })
+                    window.localStorage.setItem('token_neo4j', resp.token)
+                    if(!resp.error){
+						window.location.href = `/customers`;
+						
+                    }else{
+
+                        alert('Đăng nhập thất bại');
+                    }
+                },
+                
+                error: err => console.log({ err })
+            });
+    });
+
+    $(document).on('click', '.btnRegister', function(e) {
+		e.preventDefault();
+
+        let email = $('#email').val();
+        let password = $('#passwordRegister').val();
+        let phoneNumber = $('#phoneNumberRegister').val();
+        let customerName = $('#customerName').val();
+        let sex = $('#sex').val();
+
+        $.ajax({
+                url: `/customers/new-customer`,
+                method: 'POST',
+                data: { phoneNumber, password, email, customerName, sex },
+                success: resp => {
+                    console.log({ resp })
+                    
+                    if(!resp.error){
+						alert('Đăng ký thành công');
+						
+                    }else{
+
+                        alert('Đăng ký thất bại');
+                    }
+                },
+                
+                error: err => console.log({ err })
+            });
+    });
+</script>
+
+
+
+    

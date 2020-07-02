@@ -1,0 +1,114 @@
+<div class="header-area ptb-40">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                    <div class="logo">
+                        <a href="/"><img src="" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-sm-offset-6 col-sm-3 visible-sm">
+                    <div class="top-control">
+                        <ul>
+                            
+                            <li class="search"><i class="icon_search"></i>
+                                <div class="inner-form">
+                                    <form action="#">
+                                        <input type="text" placeholder="Search">
+                                        <button type="submit"><i class="fa fa-search"></i></button>
+                                    </form>
+                                </div>
+                            </li>
+                            <li class="cart"><i class="icon_bag_alt"></i>
+                                <span class="count">2</span>
+                                <ul class="cart-open">
+                                        <% if(listOrder.length != 0){%>
+                                            <% listOrder.forEach(product=>{ %>
+                                            <li class="single-cart">
+                                                <div class="cart-img">
+                                                    <a href="#"><img src="<%= product._fields[0].properties.image%>" alt="" /></a>
+                                                </div>
+                                                <div class="cart-content">
+                                                    <h4><a href="#"><span><%= product._fields[0].properties.name%></span></a></h4>
+                                                    <span><a href="#"><%= product._fields[0].properties.name%> </a></span>
+                                                    <span class="cart-price">$ <%= product._fields[0].properties.amout%></span>
+                                                </div>
+                                                <div class="cart-del">
+                                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                                </div>
+                                            </li>
+                                            <%}) %>
+                                        <%}%>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12 hidden-xs">
+                    <div class="mainmenu">
+                        <nav>
+                            <ul>
+                                <li><a class="" href="/">Trang Chủ<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                </li>
+                                <li ><a class="" href="/customers/list-products">Danh Mục<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                </li>
+                                <% if(id!=''){%>
+                                <li><a id = '<%=id%>' class="  customer-name" href="">Tài Khoản<%= email %><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                    <ul>
+                                        <li><a href="">Thông tin</a></li>
+                                        <li><a href="">Đổi mật khẩu</a></li>
+                                        <li><a href="/logout">Đăng xuất</a></li>
+                                        <li><a href="/login">Đăng Nhập</a></li>
+                                    </ul>
+                                </li>
+                                <%}else{%>
+                                    <li><a id = '<%=id%>' class="  customer-name" href="/login">Đăng Nhập<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                    </li>
+                                <%}%>
+                                <li><a id = '<%=id%>' class="  customer-name" href="/customers/checkout">Giỏ hàng<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 hidden-sm col-xs-12">
+                    <div class="top-control">
+                        <ul>
+                         
+                            <li class="search"><i class="icon_search"></i>
+                                <div class="inner-form">
+                                    <form action="#">
+                                        <input type="text" placeholder="Search">
+                                        <button type="submit"><i class="fa fa-search"></i></button>
+                                    </form>
+                                </div>
+                            </li>
+                            <li class="cart"><i class="icon_bag_alt"></i>
+                                <span class="count">2</span>
+                                <ul class="cart-open">
+                                    <% if(listOrder.lenght != 0){%>
+                                    <% listOrder.forEach(product=>{ %>
+                                    <li class="single-cart">
+                                        <div class="cart-img">
+                                            <a href="#"><img src="<%= product._fields[0].properties.image%>" alt="" /></a>
+                                        </div>
+                                        <div class="cart-content">
+                                            <h4><a href="#"><span><%= product._fields[0].properties.idProduct%></span></a></h4>
+                                            <span><a href="#"><%= product._fields[0].properties.name%> </a></span>
+                                            <span class="cart-price"> amout : <%= product._fields[1].properties.HAVE%></span>
+                                        </div>
+                                        <div class="cart-del">
+                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                        </div>
+                                    </li>
+                                    <%}) %>
+                                    <%}%>
+                                    
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
